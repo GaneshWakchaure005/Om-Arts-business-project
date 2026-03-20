@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { CartSidebar } from './CartSidebar';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
+const CartSidebar = lazy(()=> import('./CartSidebar'));
 import { Size1data, Size2data, Size3data, Size4data } from '../data/data';
-import { Mail, MapPin, Phone, X } from 'lucide-react';
+import { Loader, Mail, MapPin, Phone, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { ProductCard } from './ProductCard';
 import Sizebtn from './Sizebtn';
 import Footer from './Footer';
 import Header from './Header';
-import { OrderForm } from './OrderForm';
-import { OrderSummaryTemplate } from './OrderSummaryTemplate';
+const OrderForm = lazy(()=> import('./OrderForm'))
+const OrderSummaryTemplate = lazy(()=> import('./OrderSummaryTemplate'));
 import { createRoot } from "react-dom/client";
 import { flushSync } from 'react-dom';
 
@@ -137,11 +137,13 @@ export default function Main() {
   // 2️⃣ Render template
   flushSync(() => {
     root.render(
-      <OrderSummaryTemplate
+      <Suspense fallback={<Loader/>}>
+        <OrderSummaryTemplate
         cart={cart}
         orderDetails={orderDetails}
         total={total}
       />
+      </Suspense>
     );
   });
 
@@ -203,7 +205,7 @@ export default function Main() {
       {/* Header */}
       <Header cart={cart} setIsAddressOpen={setIsAddressOpen} setIsCartOpen={setIsCartOpen} setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen} />
       <div className='bg-white dark:bg-slate-900 dark:text-white text-md  font-bold sans text-black overflow-hidden'>
-        <h3 className="animate-scroll [animation-duration:6s] md:[animation-duration:20s] py-4 mt-20 md:mt-23 text-nowrap">
+        <h3 className="animate-scroll [animation-duration:12s] md:[animation-duration:35s] py-4 mt-20 md:mt-23 text-nowrap">
           2026 साठी बूकिंग सुरू झाली आहे !
         </h3>
 
@@ -352,7 +354,8 @@ export default function Main() {
         </div>
       </Modal>
       {/* Cart Sidebar */}
-      <CartSidebar
+      <Suspense fallback={<Loader/>}>
+        <CartSidebar
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
         cartItems={cart}
@@ -360,6 +363,7 @@ export default function Main() {
         removeItem={removeItem}
         onOrderClick={handleOrderClick}
       />
+      </Suspense>
 
       {/* Order Form Modal */}
       <Modal
@@ -368,11 +372,13 @@ export default function Main() {
         onClose={() => setIsOrderFormOpen(false)}
         title={isOrderSubmitted ? "Order Confirmation" : "Complete Your Order"}
       >
-        <OrderForm
+        <Suspense fallback={<Loader/>}>
+          <OrderForm
           onSubmit={handleOrderSubmit}
           isSubmitted={isOrderSubmitted}
           onDownload={generatePDF}
         />
+        </Suspense>
       </Modal>
     </div>
   );

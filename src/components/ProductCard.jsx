@@ -1,8 +1,9 @@
 
-import { useState, useEffect } from 'react';
-import { Minus, Plus, Truck, X } from 'lucide-react';
+import { useState, useEffect,lazy,Suspense } from 'react';
+import { Loader, Minus, Plus, Truck, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import StatusButton from './StatusButton';
+// import StatusButton from './StatusButton';
+const StatusButton = lazy(()=> import('./StatusButton'));
 
 export const ProductCard = ({ product, onAddToCart }) => {
   const [qty, setQty] = useState(1);
@@ -84,7 +85,9 @@ export const ProductCard = ({ product, onAddToCart }) => {
           </div>
 
           <div className="flex gap-2">
-            <StatusButton OrderedAlready={OrderedAlready} qty={qty} product={product} addToCart={onAddToCart} setIsAlreadyOrdered={setIsOrderedAlready} />
+            <Suspense fallback={<Loader/>}>
+              <StatusButton OrderedAlready={OrderedAlready} qty={qty} product={product} addToCart={onAddToCart} setIsAlreadyOrdered={setIsOrderedAlready} />
+            </Suspense>
           </div>
         </div>
       </motion.div>

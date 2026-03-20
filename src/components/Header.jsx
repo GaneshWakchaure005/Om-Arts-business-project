@@ -1,22 +1,29 @@
-import React, { useEffect, useState } from 'react'
-import { MapPin, Truck, Menu, X, Sun, Moon, Lightbulb } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { MapPin, Truck, Menu, X, Sun, Moon } from 'lucide-react'
 import logo from '../assets/logo.png'
 
 
 export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen, isMenuOpen, cart }) {
 
-  const [darkTheme, setDarkTheme] = useState(true );
-  // to enable the dark theme to entire page we have to add the dark class on the root element in html
+
+  const [darkTheme, setDarkTheme] = useState(() => {
+    const stored = localStorage.getItem("theme");
+    return stored ? stored === "dark" : true; // default dark theme
+  });
 
   const [isActive, setIsActive] = useState(1)
 
   useEffect(() => {
-    if (darkTheme)
+    if (darkTheme) {
       document.documentElement.classList.add("dark");
-    else
+      document.documentElement.style.colorScheme = "dark";
+      localStorage.setItem("theme", "dark");
+    } else {
       document.documentElement.classList.remove("dark");
-
-  }, [darkTheme])
+      document.documentElement.style.colorScheme = "light";
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkTheme]);
 
   return (
     <nav className="fixed top-0 w-full z-40 bg-orange-50/90 backdrop-blur-md border-b border-orange-200/50 dark:bg-slate-950/80 dark:border-white/5 transition-transform duration-300">
@@ -28,7 +35,7 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
               <img src={logo} />
 
             </div>
-            <span className="marathi-yatra  text-2xl md:text-5xl text-slate-900 dark:text-white">
+            <span className="font-logo font-semibold text-2xl md:text-5xl text-slate-900 dark:text-white">
               Om Arts
             </span>
           </div>
@@ -65,7 +72,7 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
                 <span className="relative z-10">Collection</span>
               </a>
 
-             
+
             </div>
           </div>
 
@@ -82,7 +89,7 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
               onClick={() => setIsCartOpen(true)}
               className="relative p-2 text-slate-700 hover:text-amber-600 dark:text-gray-300 dark:hover:text-white  bg-white shadow-sm border border-orange-200 dark:bg-slate-800 dark:border-none rounded-full dark:hover:bg-slate-700 flex gap-2 items-center"
             >
-              <Truck size={18}/>
+              <Truck size={18} />
               {cart.length >= 0 && (
                 <span className="absolute bottom-4 left-4 md:left-18 md:bottom-5 px-2 py-1 text-xs font-bold text-white transform translate-x-1/4 -translate-y-1/4 bg-red-600 rounded-full">
                   {cart.reduce((acc, item) => acc + item.qty, 0)}
@@ -125,7 +132,7 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
           </div>
         </div>
       )}
-      
+
 
     </nav>
 

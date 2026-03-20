@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { Download, Check } from 'lucide-react';
-import Downloadbtn from './Downloadbtn';
+import React, { useState , lazy, Suspense} from 'react';
+import { Download, Check, Loader } from 'lucide-react';
+// import Downloadbtn from './Downloadbtn';
+const Downloadbtn = lazy(()=> import('./Downloadbtn'));
 
-export const OrderForm = ({ onSubmit, onDownload, isSubmitted }) => {
+const OrderForm = ({ onSubmit, onDownload, isSubmitted }) => {
 
     
     const [formData, setFormData] = useState({
@@ -33,7 +34,9 @@ export const OrderForm = ({ onSubmit, onDownload, isSubmitted }) => {
                     </p>
                 </div>
 
-                <Downloadbtn onDownload={onDownload}/>
+                <Suspense fallback={<Loader/>}>
+                    <Downloadbtn onDownload={onDownload}/>
+                </Suspense>
             </div>
         );
     }
@@ -94,3 +97,4 @@ export const OrderForm = ({ onSubmit, onDownload, isSubmitted }) => {
         </form>
     );
 };
+export default OrderForm;

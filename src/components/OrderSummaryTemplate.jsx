@@ -1,6 +1,6 @@
 import React from 'react';
 import image from '../assets/invoicelogo.png'
-export const OrderSummaryTemplate = React.forwardRef(({ cart, orderDetails, total }, ref) => {
+const OrderSummaryTemplate = React.forwardRef(({ cart, orderDetails, total }, ref) => {
     return (
         <div ref={ref} className="px-6 pb-6 bg-white text-[#1c1917] border border-[#e5e7eb] w-full min-h-[296mm] box-border">
             {/* Header */}
@@ -91,3 +91,4 @@ export const OrderSummaryTemplate = React.forwardRef(({ cart, orderDetails, tota
 });
 
 OrderSummaryTemplate.displayName = 'OrderSummaryTemplate';
+export default OrderSummaryTemplate;

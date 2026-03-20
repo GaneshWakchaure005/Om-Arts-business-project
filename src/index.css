@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Yatra+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 @import "tailwindcss";
 
 /* This enables manual class-based dark mode */
 @custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-logo : 'Courgette'
+}
 
 .logo-font {
   font-family: "Trade Winds", system-ui;

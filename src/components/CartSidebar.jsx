@@ -2,7 +2,7 @@ import React from 'react'
 import { Truck, X, Plus, Minus, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export const CartSidebar = ({ isOpen, onClose, cartItems, updateItemQty, removeItem, onOrderClick }) => {
+const CartSidebar = ({ isOpen, onClose, cartItems, updateItemQty, removeItem, onOrderClick }) => {
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
 
   return (
@@ -103,3 +103,4 @@ export const CartSidebar = ({ isOpen, onClose, cartItems, updateItemQty, removeI
     </AnimatePresence>
   );
 };
+export default CartSidebar;
