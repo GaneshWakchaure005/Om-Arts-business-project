@@ -1,4 +1,3 @@
-import React from 'react'
 import { Truck, X, Plus, Minus, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 

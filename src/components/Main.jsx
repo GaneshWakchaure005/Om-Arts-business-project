@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 const CartSidebar = lazy(()=> import('./CartSidebar'));
 import { Size1data, Size2data, Size3data, Size4data } from '../data/data';
 import { Loader, Mail, MapPin, Phone, X } from 'lucide-react';
@@ -7,8 +7,8 @@ import { ProductCard } from './ProductCard';
 import Sizebtn from './Sizebtn';
 import Footer from './Footer';
 import Header from './Header';
-const OrderForm = lazy(()=> import('./OrderForm'))
-const OrderSummaryTemplate = lazy(()=> import('./OrderSummaryTemplate'));
+import OrderForm from './OrderForm'
+import OrderSummaryTemplate from './OrderSummaryTemplate';
 import { createRoot } from "react-dom/client";
 import { flushSync } from 'react-dom';
 
@@ -182,7 +182,7 @@ export default function Main() {
       .from(element)
       .toCanvas()
       .toPdf()
-      .save();
+      .save()
 
   } catch (err) {
     console.error("PDF generation failed:", err);
@@ -257,7 +257,7 @@ export default function Main() {
       </div>
 
       {/* --- Product Collection --- */}
-      <div id="collection" className="py-24 bg-stone-50 dark:bg-slate-950">
+      <div id="collection" className="py-10 bg-stone-50 dark:bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h3 className="text-3xl md:text-4xl font-serif font-bold text-stone-900 dark:text-white mb-4">आमच्याकडील विविध मूर्ती </h3>
@@ -265,7 +265,7 @@ export default function Main() {
             <p className="mt-4 text-stone-600 dark:text-gray-400">आपली ऑर्डर ऑनलाइन स्वीकारली जाईल </p>
           </div>
           {/* sizes section */}
-          <div className="flex w-full justify-evenly mb-8 items-center font-bold">
+          <div className="flex w-full justify-evenly mb-8 items-center">
             <Sizebtn id={1} label="6/9 इंच " activeSize={activeSize} setActiveSize={setActiveSize} />
             <Sizebtn id={2} label="1 फुट" activeSize={activeSize} setActiveSize={setActiveSize} />
             <Sizebtn id={3} label="1.25 / 1.5 फुट " activeSize={activeSize} setActiveSize={setActiveSize} />
