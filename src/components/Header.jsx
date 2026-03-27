@@ -32,7 +32,7 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
           {/* Logo */}
           <div className="shrink flex items-center">
             <div className="w-12 h-12 md:w-17 md:h-17 bg-linear-to-br m-2 from-amber-500 to-orange-600 dark:from-amber-500 dark:to-orange-800 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-orange-500/20 dark:shadow-orange-500/30">
-              <img src={logo} />
+              <img src={logo}  alt='Ganpati logo'/>
 
             </div>
             <span className="font-logo font-semibold text-2xl md:text-5xl text-slate-900 dark:text-white">
@@ -79,6 +79,7 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
           {/* Actions */}
           <div className="flex items-center gap-4 md:gap-10">
             <button
+            name='show address'
               onClick={() => setIsAddressOpen(true)}
               className="hidden md:flex  text-slate-600 hover:text-amber-600 dark:text-gray-300 dark:hover:text-amber-400 transition-colors items-center gap-1 text-sm font-medium"
             >
@@ -87,6 +88,7 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
 
             <button
               onClick={() => setIsCartOpen(true)}
+              name='check your orders'
               className="relative p-2 text-slate-700 hover:text-amber-600 dark:text-gray-300 dark:hover:text-white  bg-white shadow-sm border border-orange-200 dark:bg-slate-800 dark:border-none rounded-full dark:hover:bg-slate-700 flex gap-2 items-center"
             >
               <Truck size={18} />
@@ -99,6 +101,7 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
             </button>
             <button
               onClick={() => setDarkTheme(!darkTheme)}
+              name='change theme'
               className="p-2 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-colors duration-200"
             >
               {darkTheme ? <Sun size={18} /> : <Moon size={18} />}
@@ -108,6 +111,7 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+                name='toggle menubar'
                 className="text-slate-700 hover:text-amber-600 dark:text-gray-300 dark:hover:text-white transition-colors"
               >
                 {isMenuOpen ? <X /> : <Menu />}

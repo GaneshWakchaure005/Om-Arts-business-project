@@ -1,6 +1,6 @@
 
 import { useState, useEffect,lazy,Suspense } from 'react';
-import { Loader, Minus, Plus, Truck, X } from 'lucide-react';
+import { Loader, Minus, Plus, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 // import StatusButton from './StatusButton';
 const StatusButton = lazy(()=> import('./StatusButton'));
@@ -36,10 +36,12 @@ export const ProductCard = ({ product, onAddToCart }) => {
         <div className="relative h-90 overflow-hidden cursor-pointer">
           <img
             src={product.image}
+            alt={product.name}
             loading="lazy"
             decoding="async"
             className="w-full h-full object-cover"
             onClick={() => setShowImage(true)}
+          
           />
           <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-60 dark:opacity-100 pointer-events-none" />
           <div className="absolute top-3 right-3 bg-white/95 dark:bg-white text-stone-900 dark:text-black text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-sm">
@@ -61,7 +63,7 @@ export const ProductCard = ({ product, onAddToCart }) => {
               <p className='text-md font-sans font-semibold pb-1'>Select Qty</p>
               <div className="flex items-center bg-stone-100 dark:bg-slate-700 rounded-lg p-1 border border-stone-300 dark:border-slate-600">
                 <button
-
+                  name='decrease quantity'
                   onClick={() => setQty(prev => Math.max(1, prev - 1))}
                   className="p-1 text-stone-600 hover:text-stone-900 hover:bg-stone-200 dark:text-gray-400 dark:hover:text-white dark:hover:bg-slate-600 rounded transition-colors"
                 >
@@ -69,11 +71,13 @@ export const ProductCard = ({ product, onAddToCart }) => {
                 </button>
                 <input
                   type="number"
+                  alt='quantity to order'
                   value={qty}
                   onChange={(e) => setQty(Math.max(1, parseInt(e.target.value) || 1))}
                   className="w-10 bg-transparent text-center text-stone-900 dark:text-white font-semibold text-sm outline-none hide-spinners"
                 />
                 <button
+                  name='increase quantity'
                   onClick={() => setQty(prev => prev + 1)}
                   disabled={qty == product.maxlimit}
                   className="p-1 text-stone-600 hover:text-stone-900 hover:bg-stone-200 dark:text-gray-400 dark:hover:text-white dark:hover:bg-slate-600 rounded transition-colors"
