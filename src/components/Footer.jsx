@@ -1,5 +1,6 @@
 import React from 'react'
-import logo from '../assets/logo.png'
+import newlogo from '/public/newlogo.svg'
+
 import { Phone } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 export default function Footer() {
@@ -11,7 +12,7 @@ export default function Footer() {
             <div>
               <div className="flex items-center gap-2 mb-6">
                 <div className="w-8 h-8 bg-amber-600 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-md shadow-amber-500/20">
-                  <img src={logo} />
+                  <img src={newlogo} />
                 </div>
                 <h3 className="text-xl font-bold text-stone-900 dark:text-white font-serif">ओम आर्ट्स - गणपती मूर्ती कार्यशाळा</h3>
               </div>

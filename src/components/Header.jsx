@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { MapPin, Truck, Menu, X, Sun, Moon } from 'lucide-react'
-import logo from '../assets/logo.png'
+// import logo from '../assets/logo.png'
+import newlogo from '/public/newlogo.svg'
 
 
 export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen, isMenuOpen, cart }) {
@@ -31,8 +32,9 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
         <div className="flex items-center justify-between h-20 md:h-23 md:pr-12 pr-2">
           {/* Logo */}
           <div className="shrink flex items-center">
-            <div className="w-12 h-12 md:w-17 md:h-17 bg-linear-to-br m-2 from-amber-500 to-orange-600 dark:from-amber-500 dark:to-orange-800 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-orange-500/20 dark:shadow-orange-500/30">
-              <img src={logo}  alt='Ganpati logo'/>
+            <div className="w-12 h-12 md:w-17 md:h-17  m-2 
+            ">
+              <img src={newlogo}  alt='Ganpati logo'/>
 
             </div>
             <span className="font-logo font-semibold text-2xl md:text-5xl text-slate-900 dark:text-white">

@@ -1,5 +1,5 @@
 import React from 'react';
-import image from '../assets/invoicelogo.png'
+import invoicelogo from '/public/invoicelogo.jpeg'
 const OrderSummaryTemplate = React.forwardRef(({ cart, orderDetails, total }, ref) => {
     return (
         <div ref={ref} className="px-6 pb-6 bg-white text-[#1c1917] border border-[#e5e7eb] w-full min-h-[296mm] box-border">
@@ -7,7 +7,7 @@ const OrderSummaryTemplate = React.forwardRef(({ cart, orderDetails, total }, re
             <div className='text-center text-sm font-bold text-[#000000]  mb-2'>|| श्री गणेशाय नम: ||</div>
             <div className="flex gap-10 p-2 justify-between">
                 <div className="flex gap-4">
-                    <img src={image} className='h-20 w-20 rounded-full' />
+                    <img src={invoicelogo} className='h-20 w-20' />
                     <div className='flex flex-col'>
                         <span className='text-2xl font-bold text-[#d97706] mb-2'>ओम आर्ट्स व कलाकेंद्र</span>
                         <span className='text-sm text-[#302f2e] font-semibold'>
