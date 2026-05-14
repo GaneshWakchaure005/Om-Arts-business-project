@@ -1,5 +1,5 @@
 import React from 'react'
-import newlogo from '/public/newlogo.svg'
+import newlogo from '../assets/newlogo.svg'
 
 import { Phone } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { MapPin, Truck, Menu, X, Sun, Moon } from 'lucide-react'
 // import logo from '../assets/logo.png'
-import newlogo from '/public/newlogo.svg'
+import newlogo from '../assets/newlogo.svg'
 
 
 export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen, isMenuOpen, cart }) {
