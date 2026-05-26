@@ -1,5 +1,5 @@
 import { jsPDF } from "jspdf";
-
+//this file is no longer usable in this project as we switched to html2pdf over jspdf for marathi support
 const FONT_NAME = "NotoSansDevanagari";
 const FONT_FILE = "NotoSansDevanagari-Regular.ttf";
 const FONT_URL = "/fonts/candidate.ttf";
