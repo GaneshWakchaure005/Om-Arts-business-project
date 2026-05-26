@@ -1,5 +1,5 @@
 import React from 'react';
-import invoicelogo from '/public/invoicelogo.jpeg'
+import invoicelogo from '../assets/invoicelogo.jpeg'
 const OrderSummaryTemplate = React.forwardRef(({ cart, orderDetails, total }, ref) => {
     return (
         <div ref={ref} className="px-6 pb-6 bg-white text-[#1c1917] border border-[#e5e7eb] w-full min-h-[296mm] box-border">

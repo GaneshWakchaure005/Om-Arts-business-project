@@ -1,7 +1,7 @@
 
 import { useState, useEffect,lazy,Suspense } from 'react';
 import { Loader, Minus, Plus, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 // import StatusButton from './StatusButton';
 const StatusButton = lazy(()=> import('./StatusButton'));
 
@@ -9,6 +9,8 @@ export const ProductCard = ({ product, onAddToCart }) => {
   const [qty, setQty] = useState(1);
   const [showImage, setShowImage] = useState(false);
   const [OrderedAlready, setIsOrderedAlready] = useState(false);
+  const imageSrc = product.image || product.image_url;
+  const maxOrder = product.maxorder || product.maxlimit;
 
   useEffect(() => {
   if (showImage) {
@@ -25,7 +27,7 @@ export const ProductCard = ({ product, onAddToCart }) => {
 
   return (
     <>
-      <motion.div
+      <Motion.div
         whileHover={{ scale: 1.03, y: -6 }}
         transition={{
           duration: 0.1,
@@ -35,7 +37,7 @@ export const ProductCard = ({ product, onAddToCart }) => {
       >
         <div className="relative h-90 overflow-hidden cursor-pointer">
           <img
-            src={product.image}
+            src={imageSrc}
             alt={product.name}
             loading="lazy"
             decoding="async"
@@ -79,7 +81,7 @@ export const ProductCard = ({ product, onAddToCart }) => {
                 <button
                   name='increase quantity'
                   onClick={() => setQty(prev => prev + 1)}
-                  disabled={qty == product.maxlimit}
+                  disabled={maxOrder ? qty >= maxOrder : false}
                   className="p-1 text-stone-600 hover:text-stone-900 hover:bg-stone-200 dark:text-gray-400 dark:hover:text-white dark:hover:bg-slate-600 rounded transition-colors"
                 >
                   <Plus size={18} />
@@ -94,10 +96,10 @@ export const ProductCard = ({ product, onAddToCart }) => {
             </Suspense>
           </div>
         </div>
-      </motion.div>
+      </Motion.div>
       <AnimatePresence>
         {showImage && (
-          <motion.div
+          <Motion.div
             className="fixed inset-0 z-50 bg-stone-900/90 dark:bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -114,8 +116,8 @@ export const ProductCard = ({ product, onAddToCart }) => {
               </button>
 
               {/* image */}
-              <motion.img
-                src={product.image}
+              <Motion.img
+                src={imageSrc}
                 alt={product.name}
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
@@ -124,7 +126,7 @@ export const ProductCard = ({ product, onAddToCart }) => {
               />
             </div>
 
-          </motion.div>
+          </Motion.div>
         )}
       </AnimatePresence>
     </>

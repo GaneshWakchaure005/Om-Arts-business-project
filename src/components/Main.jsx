@@ -1,8 +1,8 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
 const CartSidebar = lazy(()=> import('./CartSidebar'));
-import { Size1data, Size2data, Size3data, Size4data } from '../data/data';
+// import { Size1data, Size2data, Size3data, Size4data } from '../data/data';
 import { Loader, Mail, MapPin, Phone, X } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion as Motion } from 'framer-motion';
 import { ProductCard } from './ProductCard';
 import Sizebtn from './Sizebtn';
 import Footer from './Footer';
@@ -11,6 +11,7 @@ import OrderForm from './OrderForm'
 import OrderSummaryTemplate from './OrderSummaryTemplate';
 import { createRoot } from "react-dom/client";
 import { flushSync } from 'react-dom';
+import { getCatalogue } from '../services/catalogueService';
 
 const BUSINESS_ADDRESS = {
   shop: "ओम आर्ट्स - गणपती मूर्ती कार्यशाळा ",
@@ -26,7 +27,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
   if (!isOpen) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/60 dark:bg-black/70 backdrop-blur-sm">
-      <motion.div
+      <Motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
@@ -39,7 +40,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
           {title && <h3 className="text-2xl font-bold text-amber-600 dark:text-amber-500 mb-4 marathi-sans">{title}</h3>}
           {children}
         </div>
-      </motion.div>
+      </Motion.div>
     </div>
   );
 };
@@ -53,7 +54,10 @@ export default function Main() {
   const [isOrderFormOpen, setIsOrderFormOpen] = useState(false);
   const [isOrderSubmitted, setIsOrderSubmitted] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
-
+  const [cat1, setCat1] = useState ([]);
+  const [cat2, setCat2] = useState ([]);
+  const [cat3, setCat3] = useState ([]);
+  const [cat4, setCat4] = useState ([]);
 
   useEffect(() => {
     if (isAddressOpen || isOrderFormOpen) {
@@ -87,6 +91,16 @@ export default function Main() {
     });
   };
 
+   useEffect(() => {
+    async function test() {
+      const data = await getCatalogue();
+      setCat1(data.filter((model) => Number(model.category) === 1));
+      setCat2(data.filter((model) => Number(model.category) === 2));
+      setCat3(data.filter((model) => Number(model.category) === 3));
+      setCat4(data.filter((model) => Number(model.category) === 4));
+    }
+    test();
+   },[]);
 
   const updateItemQty = (id, newQty) => {
     if (newQty < 1) return removeItem(id);
@@ -215,7 +229,7 @@ export default function Main() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
 
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
@@ -245,7 +259,7 @@ export default function Main() {
                 <MapPin size={20} /> आमचा  पत्ता
               </button>
             </div>
-          </motion.div>
+          </Motion.div>
         </div>
       </div>
 
@@ -274,55 +288,49 @@ export default function Main() {
 
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {activeSize == 1 && Size1data.map((product) => (
-              <motion.div
+            {activeSize === 1 && cat1.map((product) => (
+              <Motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
               >
                 <ProductCard product={product} onAddToCart={addToCart} />
-              </motion.div>
+              </Motion.div>
             ))}
-            {activeSize === 2 && Size2data.map((product) => (
-              <motion.div
+            {activeSize === 2 && cat2.map((product) => (
+              <Motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
               >
                 <ProductCard product={product} onAddToCart={addToCart} />
-              </motion.div>
+              </Motion.div>
             ))}
-            {activeSize === 3 && Size3data.map((product) => (
-              <motion.div
+            {activeSize === 3 && cat3.map((product) => (
+              <Motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
               >
                 <ProductCard product={product} onAddToCart={addToCart} />
-              </motion.div>
+              </Motion.div>
             ))}
-            {activeSize === 4 && Size4data.map((product) => (
-              <motion.div
+            {activeSize === 4 && cat4.map((product) => (
+              <Motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
               >
                 <ProductCard product={product} onAddToCart={addToCart} />
-              </motion.div>
+              </Motion.div>
             ))}
+
           </div>
         </div>
-      </div>
-      {/* sizes section */}
-      <div className="flex w-full justify-evenly mb-8 items-center font-bold">
-        <a href="#collection"><Sizebtn id={1} label="6/9 इंच " activeSize={activeSize} setActiveSize={setActiveSize} /></a>
-        <a href="#collection"><Sizebtn id={2} label="1 फुट" activeSize={activeSize} setActiveSize={setActiveSize} /></a>
-        <a href="#collection"><Sizebtn id={3} label="1.25 / 1.5 फुट " activeSize={activeSize} setActiveSize={setActiveSize} /></a>
-        <a href="#collection"><Sizebtn id={4} label="2 फुट+" activeSize={activeSize} setActiveSize={setActiveSize} /></a>
       </div>
 
       <Footer />

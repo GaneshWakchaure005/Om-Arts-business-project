@@ -1,8 +1,19 @@
 import { Truck, X, Plus, Minus, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+// import { getCatalogue } from '../services/catalogueService';
+// import { useEffect } from 'react';
 
 const CartSidebar = ({ isOpen, onClose, cartItems, updateItemQty, removeItem, onOrderClick }) => {
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+  //  useEffect(() => {
+  //   async function test() {
+  //     const data = await getCatalogue();
+  //     console.log(data);
+  //   }
+
+  //   test();
+  // }, []);
 
   return (
     <AnimatePresence>

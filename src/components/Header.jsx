@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { MapPin, Truck, Menu, X, Sun, Moon } from 'lucide-react'
 // import logo from '../assets/logo.png'
-import newlogo from '/public/newlogo.svg'
+import newlogo from '../assets/newlogo.svg'
 
 
 export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen, isMenuOpen, cart }) {
@@ -13,6 +13,22 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
   });
 
   const [isActive, setIsActive] = useState(1)
+
+  const closeMobileMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  const handleMobileAddressClick = (event) => {
+    event.preventDefault();
+    setIsAddressOpen(true);
+    closeMobileMenu();
+  };
+
+  const handleMobileCartClick = (event) => {
+    event.preventDefault();
+    setIsCartOpen(true);
+    closeMobileMenu();
+  };
 
   useEffect(() => {
     if (darkTheme) {
@@ -127,12 +143,12 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
       {isMenuOpen && (
         <div className="md:hidden bg-white/95 dark:bg-slate-900 border-b border-orange-200 dark:border-slate-800 shadow-lg dark:shadow-none">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="#" className="text-amber-600 dark:text-amber-500 block px-3 py-2 rounded-md text-base font-medium"
+            <a href="#" onClick={closeMobileMenu} className="text-amber-600 dark:text-amber-500 block px-3 py-2 rounded-md text-base font-medium"
             >Home</a>
-            <a href="#collection" className="text-slate-700 hover:text-amber-600 hover:bg-orange-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-slate-800 block px-3 py-2 rounded-md text-base font-medium transition-colors"
+            <a href="#collection" onClick={closeMobileMenu} className="text-slate-700 hover:text-amber-600 hover:bg-orange-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-slate-800 block px-3 py-2 rounded-md text-base font-medium transition-colors"
             >Collection</a>
-            <a href="#" onClick={() => setIsAddressOpen(true)} className="text-slate-700 hover:text-amber-600 hover:bg-orange-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-slate-800 block px-3 py-2 rounded-md text-base font-medium transition-colors">Our Address</a>
-            <a href="#" onClick={() => setIsCartOpen(true)}
+            <a href="#" onClick={handleMobileAddressClick} className="text-slate-700 hover:text-amber-600 hover:bg-orange-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-slate-800 block px-3 py-2 rounded-md text-base font-medium transition-colors">Our Address</a>
+            <a href="#" onClick={handleMobileCartClick}
               className="text-slate-700 hover:text-amber-600 hover:bg-orange-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-slate-800 block px-3 py-2 rounded-md text-base font-medium transition-colors "
             >View Orders</a>
           </div>

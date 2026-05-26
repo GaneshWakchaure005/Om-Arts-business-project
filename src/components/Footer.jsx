@@ -1,5 +1,7 @@
 import React from 'react'
-import newlogo from '/public/newlogo.svg'
+import { Link } from 'react-router-dom'
+import newlogo from '../assets/newlogo.svg'
+import Mapsection from './Mapsection'
 
 import { Phone } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
@@ -23,10 +25,17 @@ export default function Footer() {
             <div>
               <h4 className="text-stone-900 dark:text-white font-bold mb-6">Quick Links</h4>
               <ul className="space-y-3 text-stone-600 dark:text-gray-500">
-
                 <li><a href="#" className="hover:text-amber-600 dark:hover:text-amber-500 transition-colors">Shadu Mati Murtis</a></li>
                 <li><a href="#" className="hover:text-amber-600 dark:hover:text-amber-500 transition-colors">POP Murtis</a></li>
                 <li><a href="#" className="hover:text-amber-600 dark:hover:text-amber-500 transition-colors">Visit us</a></li>
+                <li>
+                  <Link
+                    to="/admin/login"
+                    className="hover:text-amber-600 dark:hover:text-amber-500 transition-colors"
+                  >
+                    Admin Login
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
@@ -49,13 +58,14 @@ export default function Footer() {
               </div>
             </div>
           </div>
+          <Mapsection />
+
           <div className="border-t border-stone-200 dark:border-slate-900 pt-8 text-center">
             <p className="text-stone-500 dark:text-gray-600 text-sm">
               © 2026 Om Arts. All rights reserved. Designed and developed by Ganesh wakchaure.
             </p>
           </div>
         </div>
-
       </footer>
 
   )
