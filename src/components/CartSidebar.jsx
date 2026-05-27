@@ -1,19 +1,9 @@
 import { Truck, X, Plus, Minus, Check } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-// import { getCatalogue } from '../services/catalogueService';
-// import { useEffect } from 'react';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 
 const CartSidebar = ({ isOpen, onClose, cartItems, updateItemQty, removeItem, onOrderClick }) => {
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
 
-  //  useEffect(() => {
-  //   async function test() {
-  //     const data = await getCatalogue();
-  //     console.log(data);
-  //   }
-
-  //   test();
-  // }, []);
 
   return (
     <AnimatePresence>
@@ -58,7 +48,7 @@ const CartSidebar = ({ isOpen, onClose, cartItems, updateItemQty, removeItem, on
                     className="bg-white dark:bg-slate-800/50 rounded-xl flex flex-col  border border-stone-200 dark:border-slate-700/50 shadow-sm dark:shadow-none"
                   >
                     <div className='flex gap-6 p-3'>
-                      <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded-lg" />
+                      <img src={item.image_url} alt={item.name} className="w-16 h-16 object-cover rounded-lg" />
                       <div className="flex-1">
                         <h4 className="text-stone-900 dark:text-white font-semibold text-sm mb-1">{item.name}</h4>
                         <p className="text-amber-600 dark:text-amber-500 font-bold">₹{item.price} / unit</p>

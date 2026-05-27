@@ -53,7 +53,7 @@ const OrderSummaryTemplate = React.forwardRef(({ cart, orderDetails, total }, re
                     <thead>
                         <tr className="bg-[#fef3c7] text-[#92400e]">
                             <th className="p-3 border-b-2 border-[#fde68a]">No.</th>
-                            <th className="p-3 border-b-2 border-[#fde68a]">Product</th>
+                            <th className="p-3 border-b-2 border-[#fde68a]">Model </th>
                             <th className="p-3 border-b-2 border-[#fde68a]">Size</th>
                             <th className="p-3 border-b-2 border-[#fde68a] text-center">Qty</th>
                             <th className="p-3 border-b-2 border-[#fde68a] text-right">Price</th>
@@ -63,9 +63,9 @@ const OrderSummaryTemplate = React.forwardRef(({ cart, orderDetails, total }, re
                     <tbody>
                         {cart.map((item, index) => (
                             <tr key={index} className="border-b border-[#e7e5e4]">
-                                <td className="p-3">{item.id}</td>
+                                <td className="p-3">{item.model_number}</td>
                                 <td className="p-3">{item.name}</td>
-                                <td className="p-3">{item.size || "Standard"}</td>
+                                <td className="p-3">{item.size }</td>
                                 <td className="p-3 text-center">{item.qty}</td>
                                 <td className="p-3 text-right">₹{item.price}</td>
                                 <td className="p-3 text-right font-medium">₹{item.price * item.qty}</td>
