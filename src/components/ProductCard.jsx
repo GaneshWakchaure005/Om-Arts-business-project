@@ -49,13 +49,11 @@ export const ProductCard = ({ product, onAddToCart }) => {
           <div className="absolute top-3 right-3 bg-white/95 dark:bg-white text-stone-900 dark:text-black text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-sm">
             {product.size}
           </div>
-          <div className="absolute bottom-3 left-3 right-3">
-            <span className="text-amber-500 dark:text-amber-400 text-xs font-semibold tracking-wider uppercase mb-1 block">{product.category}</span>
-          </div>
+          
         </div>
 
         <div className="p-5">
-          <p className="text-stone-600 dark:text-gray-400 text-sm mb-4 line-clamp-2 font-bold md:text-xl">{product.name}</p>
+          <p className="text-stone-600 dark:text-gray-400 text-md mb-4 line-clamp-2 font-bold md:text-xl">{product.name}</p>
 
           <div className="flex items-center justify-between mb-4">
             <span className="text-2xl font-bold text-stone-900 dark:text-white">₹{product.price}</span>
